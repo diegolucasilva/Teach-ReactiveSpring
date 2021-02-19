@@ -8,6 +8,7 @@ import reactor.test.scheduler.VirtualTimeScheduler;
 import java.time.Duration;
 import java.util.Arrays;
 
+//5
 public class FluxAndMonoCombineTest {
 
     @Test
@@ -66,7 +67,7 @@ public class FluxAndMonoCombineTest {
 
         Flux<String> mergedFlux = Flux.concat(flux1,flux2);
 
-        StepVerifier.withVirtualTime(()->mergedFlux.log())
+        StepVerifier.withVirtualTime(()->mergedFlux.log()) //faz com que nao espere os 6 segundos
                 .expectSubscription()
                 .thenAwait(Duration.ofSeconds(6))
                 .expectNextCount(6)

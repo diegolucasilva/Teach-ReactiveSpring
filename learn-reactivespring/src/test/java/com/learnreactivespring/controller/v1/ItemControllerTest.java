@@ -48,13 +48,13 @@ public class ItemControllerTest {
 
     @Before
     public void setUp(){
-        itemReactiveRepository.deleteAll()
-                .thenMany(Flux.fromIterable(data()))
-                .flatMap(itemReactiveRepository::save)
-                .doOnNext((item -> {
-                    System.out.println("Inserted item is : " + item);
-                }))
-                .blockLast();
+     //   itemReactiveRepository.deleteAll()
+              //  .Many(Flux.fromIterable(data()))
+        //        .flatMap(itemReactiveRepository::save)
+           //     .doOnNext((item -> {
+            //        System.out.println("Inserted item is : " + item);
+             //   }))
+           //     .blockLast();
     }
 
     @Test

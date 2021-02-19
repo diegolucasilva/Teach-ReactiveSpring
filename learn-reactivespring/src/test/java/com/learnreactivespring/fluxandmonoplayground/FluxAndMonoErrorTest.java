@@ -6,6 +6,7 @@ import reactor.test.StepVerifier;
 
 import java.time.Duration;
 
+//6
 public class FluxAndMonoErrorTest {
 
     @Test
@@ -13,7 +14,7 @@ public class FluxAndMonoErrorTest {
 
         Flux<String> stringFlux = Flux.just("A", "B", "C")
                 .concatWith(Flux.error(new RuntimeException("Exception Occurred")))
-                .concatWith(Flux.just("D"))
+                .concatWith(Flux.just("D")) //nao é executado
                 .onErrorResume((e) -> {    // this block gets executed
                     System.out.println("Exception is : " + e);
                     return Flux.just("default", "default1");
@@ -22,7 +23,7 @@ public class FluxAndMonoErrorTest {
         StepVerifier.create(stringFlux.log())
                 .expectSubscription()
                 .expectNext("A", "B", "C")
-                //.expectError(RuntimeException.class)
+                //.expectError(RuntimeException.class) //se que tirar o catch de cima
                 //.verify();
                 .expectNext("default", "default1")
                 .verifyComplete();

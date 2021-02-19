@@ -6,12 +6,13 @@ import reactor.core.publisher.BaseSubscriber;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
+//8
 public class FluxAndMonoBackPressureTest {
 
     @Test
     public void backPressureTest() {
 
-        Flux<Integer> finiteFlux = Flux.range(1, 10)
+        Flux<Integer> finiteFlux = Flux.range(1, 10) //o valor so vem quando é requisitado = back pressure
                 .log();
 
         StepVerifier.create(finiteFlux)

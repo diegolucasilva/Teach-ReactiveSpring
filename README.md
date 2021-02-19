@@ -39,3 +39,6 @@ brew services restart mongodb-community
 - Follow the steps in the below link to install Mongo db in Windows.
 
 https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
+
+
+docker run -d -p 27017:27017 --name mongodb dockerfile/mongodb

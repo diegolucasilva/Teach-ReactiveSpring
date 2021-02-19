@@ -6,6 +6,7 @@ import reactor.test.StepVerifier;
 
 import java.time.Duration;
 
+//7
 public class FluxAndMonoWithTimeTest {
 
     @Test
@@ -17,7 +18,7 @@ public class FluxAndMonoWithTimeTest {
         infiniteFlux
                 .subscribe((element) -> System.out.println("Value is : " + element));
 
-        Thread.sleep(3000);
+        Thread.sleep(3000000); //ele nao cai nesse sleep
 
     }
 

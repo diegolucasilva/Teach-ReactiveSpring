@@ -6,7 +6,7 @@ import reactor.test.StepVerifier;
 
 import java.util.Arrays;
 import java.util.List;
-
+//4
 import static reactor.core.scheduler.Schedulers.parallel;
 
 public class FluxAndMonoTransformTest {
@@ -116,7 +116,7 @@ public class FluxAndMonoTransformTest {
     public void tranformUsingFlatMap_usingparallel(){
 
         Flux<String> stringFlux = Flux.fromIterable(Arrays.asList("A","B","C","D","E","F")) // Flux<String>
-                .window(2) //Flux<Flux<String> -> (A,B), (C,D), (E,F)
+                .window(2) //Flux<Flux<String> -> (A,B), (C,D), (E,F) //passa de 2 em 2 elementos
                 .flatMap((s) ->
                     s.map(this::convertToList).subscribeOn(parallel())) // Flux<List<String>
                     .flatMap(s -> Flux.fromIterable(s)) //Flux<String>
@@ -136,7 +136,7 @@ public class FluxAndMonoTransformTest {
                         s.map(this::convertToList).`(parallel())) */// Flux<List<String>
                 .flatMapSequential((s) ->
                         s.map(this::convertToList).subscribeOn(parallel()))
-                .flatMap(s -> Flux.fromIterable(s)) //Flux<String>
+                .flatMap(s -> Flux.fromIterable(s)) //Flux<String> //junta tudo em um so
                 .log();
 
         StepVerifier.create(stringFlux)

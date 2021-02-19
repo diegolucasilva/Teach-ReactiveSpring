@@ -6,7 +6,7 @@ import reactor.test.StepVerifier;
 import reactor.test.scheduler.VirtualTimeScheduler;
 
 import java.time.Duration;
-
+//10
 public class VirtualTimeTest {
 
     @Test
@@ -24,7 +24,7 @@ public class VirtualTimeTest {
     @Test
     public void testingWithVirtualTime(){
 
-        VirtualTimeScheduler.getOrSet();
+        VirtualTimeScheduler.getOrSet(); //faz com que n espere 3 segundos
 
         Flux<Long> longFlux = Flux.interval(Duration.ofSeconds(1))
                 .take(3);

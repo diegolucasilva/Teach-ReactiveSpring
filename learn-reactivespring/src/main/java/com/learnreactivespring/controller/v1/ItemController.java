@@ -40,7 +40,6 @@ public class ItemController {
         return itemReactiveRepository.findById(id)
                 .map((item) -> new ResponseEntity<>(item, HttpStatus.OK))
                 .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-
     }
 
     @PostMapping(ITEM_END_POINT_V1)

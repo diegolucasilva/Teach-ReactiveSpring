@@ -35,7 +35,7 @@ public class ItemReactiveRepositorytest {
 
         itemReactiveRepository.deleteAll()
                 .thenMany(Flux.fromIterable(itemList))
-                .flatMap(itemReactiveRepository::save)
+                .flatMap(itemReactiveRepository::save) //Junta todos os Flux
                 .doOnNext((item -> {
                     System.out.println("Inserted Item is :" + item);
                 }))
@@ -87,23 +87,20 @@ public class ItemReactiveRepositorytest {
 
     @Test
     public void updateItem() {
-
         double newPrice = 520.00;
         Mono<Item> updatedItem = itemReactiveRepository.findByDescription("LG TV")
-                .map(item -> {
+                .map(item -> { //retorna um outro mono
                     item.setPrice(newPrice); //setting the new price
                     return item;
                 })
-                .flatMap((item) -> {
+                .flatMap((item) -> { //recebe um Mono e retorna outro
                     return itemReactiveRepository.save(item); //saving the item with the new price
-                });
+                }) ;
 
         StepVerifier.create(updatedItem)
                 .expectSubscription()
                 .expectNextMatches(item -> item.getPrice() == 520.00)
                 .verifyComplete();
-
-
     }
 
 
